@@ -1,0 +1,10 @@
+databaseChangeLog:
+- include:
+  - file: "v1.0.0_001-create_random_number_table.yaml"
+  - relativeToChangelogFile: true
+- include:
+  - file: "v1.0.0_002-insert_random_number.yaml"
+  - relativeToChangelogFile: true
+- include:
+  - file: "v1.0.0_003-create_result_table.yaml"
+  - relativeToChangelogFile: true

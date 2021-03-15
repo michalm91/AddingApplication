@@ -1,0 +1,104 @@
+image: docker:20.10
+variables:
+  DOCKER_DRIVER: overlay2
+  MAVEN_OPTS: '-Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=WARN'
+  MAVEN_CLI_OPTS: '-s .m2/settings.xml --batch-mode --errors --show-version -Dmaven.repo.local=/projects-cache/.m2'
+
+services:
+- docker:dind
+
+stages:
+- Test
+- Build
+- Publish Image
+- Deploy DEV
+- Deploy RC
+
+.before_scheme: &before_scheme
+  before_script:
+  - apk add --update py-pip openjdk11 procps nss
+  - apk add --update curl && rm -rf /var/cache/apk/*
+  - pip install --upgrade pip
+  - pip install awscli
+  - ecr_login=$(aws ecr get-login --no-include-email)
+  - eval ${ecr_login}
+
+.deploy_script: &deploy_script
+  script:
+  - docker pull ${ECR_URL}:${CI_COMMIT_TAG}
+  - docker tag ${ECR_URL}:${CI_COMMIT_TAG} ${ECR_URL}:${DEPLOY_ENV}
+  - docker push ${ECR_URL}:${DEPLOY_ENV}
+  - aws ecs update-service --cluster ${DEPLOY_ENV}-extecs --service ${DEPLOY_ENV}-extecs-adding-operation-application --force-new-deployment
+
+.deploy_scheme_DEV: &deploy_scheme_DEV
+  <<: *before_scheme
+  environment: ${DEPLOY_ENV}
+  only:
+  - tags
+  only:
+  - /(\d+\.){1}(\d+\.){1}(\d+\.){1}(\d+)$/
+  tags:
+  - dind
+  when: manual
+  allow_failure: false
+  <<: *deploy_script
+
+.deploy_scheme_RC: &deploy_scheme_RC
+  <<: *before_scheme
+  environment: ${DEPLOY_ENV}
+  only:
+  - tags
+  only:
+  - /(\d+\.){1}(\d+\.){1}(\d+\.){1}(\d+)$/
+  tags:
+  - dind
+  when: manual
+  allow_failure: false
+  <<: *deploy_script
+
+Test:
+  stage: Test
+  before_script:
+  - apk add --update openjdk11 procps nss
+  tags:
+  - dind
+  allow_failure: false
+  script: ./mvnw test
+
+Build:
+  stage: Build
+  before_script:
+  - apk add --update openjdk11 procps nss
+  only:
+  - tags
+  only:
+  - /(\d+\.){1}(\d+\.){1}(\d+\.){1}(\d+)$/
+  tags:
+  - dind
+  script:
+  - docker build -t adding-operation-application:${CI_COMMIT_TAG} .
+
+Publish Image:
+  stage: Publish Image
+  variables:
+    AWS_ACCESS_KEY_ID: ${DEV_AWS_ACCESS_KEY_ID}
+    AWS_SECRET_ACCESS_KEY: ${DEV_AWS_SECRET_ACCESS_KEY}
+  <<: *before_scheme
+  only:
+  - tags
+  only:
+  - /(\d+\.){1}(\d+\.){1}(\d+\.){1}(\d+)$/
+  tags:
+  - dind
+  allow_failure: false
+  script:
+  - docker tag adding-operation-application:${CI_COMMIT_TAG} $ECR_URL:${CI_COMMIT_TAG}
+  - docker push $ECR_URL:${CI_COMMIT_TAG}
+
+Deploy DEV:
+  stage: Deploy DEV
+  <<: *deploy_scheme_DEV
+
+Deploy RC:
+  stage: Deploy RC
+  <<: *deploy_scheme_RC

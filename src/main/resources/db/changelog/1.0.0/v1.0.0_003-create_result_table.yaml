@@ -1,0 +1,23 @@
+databaseChangeLog:
+- changeSet:
+    id: 1.0.0_003
+    author: mmatuszewski
+    comment: "Result table initialization"
+    validCheckSum: any
+    changes:
+    - createTable:
+        tableName: result
+        columns:
+        - column:
+            name: id
+            type: bigint unsigned
+            autoIncrement: true
+            constraints:
+              primaryKey: true
+              nullable: false
+        - column:
+            name: last_value
+            type: text
+        - column:
+            name: result
+            type: text

@@ -1,0 +1,20 @@
+databaseChangeLog:
+- changeSet:
+    id: 1.0.0_001
+    author: mmatuszewski
+    comment: "Random number table initialization"
+    validCheckSum: any
+    changes:
+    - createTable:
+        tableName: random_number
+        columns:
+        - column:
+            name: id
+            type: bigint unsigned
+            autoIncrement: true
+            constraints:
+              primaryKey: true
+              nullable: false
+        - column:
+            name: number
+            type: bigint

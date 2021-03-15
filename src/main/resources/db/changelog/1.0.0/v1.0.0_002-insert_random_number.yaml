@@ -1,0 +1,91 @@
+databaseChangeLog:
+- changeSet:
+    id: 1.0.0_002
+    author: mmatuszewski
+    comment: "Insert random number to random_number table"
+    validCheckSum: any
+    changes:
+    - insert:
+        tableName: random_number
+        columns:
+        - column:
+            name: number
+            value: 293821
+    - insert:
+        tableName: random_number
+        columns:
+        - column:
+            name: number
+            value: 5445
+    - insert:
+        tableName: random_number
+        columns:
+        - column:
+            name: number
+            value: 12
+    - insert:
+        tableName: random_number
+        columns:
+        - column:
+            name: number
+            value: 8646553544353543
+    - insert:
+        tableName: random_number
+        columns:
+        - column:
+            name: number
+            value: 23213
+    - insert:
+        tableName: random_number
+        columns:
+        - column:
+            name: number
+            value: 231
+    - insert:
+        tableName: random_number
+        columns:
+        - column:
+            name: number
+            value: 344343
+    - insert:
+        tableName: random_number
+        columns:
+        - column:
+            name: number
+            value: 54522
+    - insert:
+        tableName: random_number
+        columns:
+        - column:
+            name: number
+            value: 321321
+    - insert:
+        tableName: random_number
+        columns:
+        - column:
+            name: number
+            value: 322
+    - insert:
+        tableName: random_number
+        columns:
+        - column:
+            name: number
+            value: 312
+    - insert:
+        tableName: random_number
+        columns:
+        - column:
+            name: number
+            value: 32313131
+    - insert:
+        tableName: random_number
+        columns:
+        - column:
+            name: number
+            value: 7675
+    - insert:
+        tableName: random_number
+        columns:
+        - column:
+            name: number
+            value: 6543

@@ -1,0 +1,27 @@
+server:
+  port: 8099
+
+spring:
+  main:
+    banner-mode: "off"
+  application:
+    name: decerto
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+
+logging:
+  level:
+    dev.matuszewski: info
+
+decerto:
+  api:
+    random: https://www.random.org
