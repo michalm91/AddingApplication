@@ -23,6 +23,6 @@ public class DbDataSourceService implements IDataSource {
                 .skip(random.nextInt(randomNumbers.size()))
                 .findFirst()
                 .map(randomNumber -> BigDecimal.valueOf(randomNumber.getNumber()))
-                .orElse(BigDecimal.valueOf(0));
+                .orElse(BigDecimal.ZERO);
     }
 }
