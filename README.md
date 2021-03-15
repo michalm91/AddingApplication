@@ -27,10 +27,16 @@ Do usługi został zaimplementowany gitlab-ci, umożliwiający deployment aplika
 - przy każdym commit uruchamiany jest stage testów
 - budowanie jest możliwe po utworzeniu taga ze strukturą x.y.z (gdzie x.y.z to wersja aplikacji). Stworzony tag umożliwia wysłanie obrazu dockerowego na chmurę i wybudowanie środowiska DEV i RC. 
 
+## Uruchomienie lokalne aplikacji
+- po zaimportowaniu do np.: Intellij
+- standardowym komendami spring-boot/maven (np.: mvn spring-boot:run)
+- zbudowanie obrazu dockerowego (Dockerfile included)
+
 
 ## Najważniejsze technologie/biblioteki
 - Java 11
 - Spring Boot 2.4
+- Maven 3.6
 - Hibernate
 - Liquibase
 - Lombok
