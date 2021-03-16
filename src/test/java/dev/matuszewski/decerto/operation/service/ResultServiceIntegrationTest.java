@@ -6,7 +6,6 @@ import dev.matuszewski.decerto.operation.reposotory.ResultRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.ApplicationContext;
 
 import java.math.BigDecimal;
 
@@ -14,12 +13,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 public class ResultServiceIntegrationTest {
+
     @Autowired
     private ResultService resultService;
     @Autowired
     private ResultRepository resultRepository;
-    @Autowired
-    private ApplicationContext applicationContext;
 
     private static final String EXAMPLE_DB_LAST_VALUE = "18";
     private static final String EXAMPLE_CURRENT_VALUE = "2";

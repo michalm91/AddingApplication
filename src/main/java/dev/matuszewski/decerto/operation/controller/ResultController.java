@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/")
 @RequiredArgsConstructor
 public class ResultController {
+
     private final ResultService resultService;
 
     @GetMapping("result")

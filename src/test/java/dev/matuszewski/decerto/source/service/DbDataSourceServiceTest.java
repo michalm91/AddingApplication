@@ -16,6 +16,7 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class DbDataSourceServiceTest {
+
     @Mock
     private RandomNumberRepository randomNumberRepository;
     @InjectMocks

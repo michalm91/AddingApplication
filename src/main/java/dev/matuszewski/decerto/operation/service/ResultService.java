@@ -21,6 +21,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class ResultService {
+
     private final ResultMapper resultMapper;
     private final ResultRepository resultRepository;
     private final ApplicationContext applicationContext;

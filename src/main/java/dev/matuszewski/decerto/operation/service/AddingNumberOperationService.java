@@ -15,6 +15,7 @@ import java.util.function.Consumer;
 @Service
 @RequiredArgsConstructor
 public class AddingNumberOperationService implements IOperation {
+
     private final ResultRepository resultRepository;
 
     @Override

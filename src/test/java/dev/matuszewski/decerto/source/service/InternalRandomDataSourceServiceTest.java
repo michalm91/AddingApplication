@@ -11,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(MockitoExtension.class)
 public class InternalRandomDataSourceServiceTest {
+
     private InternalRandomDataSourceService internalRandomDataSourceService;
 
     @BeforeEach
