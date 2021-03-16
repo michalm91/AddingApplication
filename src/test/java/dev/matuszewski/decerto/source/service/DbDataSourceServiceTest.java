@@ -1,8 +1,7 @@
-package dev.matuszewski.decerto.service.source;
+package dev.matuszewski.decerto.source.service;
 
 import dev.matuszewski.decerto.source.model.RandomNumber;
 import dev.matuszewski.decerto.source.reposotory.RandomNumberRepository;
-import dev.matuszewski.decerto.source.service.DbDataSourceService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

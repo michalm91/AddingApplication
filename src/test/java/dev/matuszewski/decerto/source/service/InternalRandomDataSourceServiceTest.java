@@ -1,6 +1,5 @@
-package dev.matuszewski.decerto.service.source;
+package dev.matuszewski.decerto.source.service;
 
-import dev.matuszewski.decerto.source.service.InternalRandomDataSourceService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
